@@ -1,0 +1,20 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "spring-switch",
+  "type": "registry:ui",
+  "title": "SpringSwitch",
+  "description": "An on/off switch whose thumb overshoots with a springy settle.",
+  "dependencies": [
+    "motion-v@^2.3.0"
+  ],
+  "registryDependencies": [
+    "https://verve.jettonn.dev/r/use-reduced-motion.json"
+  ],
+  "files": [
+    {
+      "path": "ui/SpringSwitch.vue",
+      "content": "<script setup lang=\"ts\">\n// Verve · SpringSwitch\n// A toggle whose thumb springs across the track with a touch of overshoot —\n// the low damping is what gives it that satisfying, slightly bouncy settle.\n// Emits `update:modelValue`; falls back to an instant slide for reduced motion.\nimport { computed, ref, watch } from 'vue'\nimport { motion } from 'motion-v'\nimport { useReducedMotion } from '@/lib/useReducedMotion'\n\nconst props = withDefaults(\n  defineProps<{\n    /** On/off state (v-model). */\n    modelValue?: boolean\n    label?: string\n    /** Spring tension. */\n    stiffness?: number\n    /** Spring friction — lower means more overshoot. */\n    damping?: number\n  }>(),\n  { stiffness: 600, damping: 26 }\n)\nconst emit = defineEmits<{ 'update:modelValue': [boolean] }>()\n\nconst reduced = useReducedMotion()\nconst on = ref(props.modelValue ?? false)\nwatch(\n  () => props.modelValue,\n  (v) => v !== undefined && (on.value = v)\n)\n\nfunction toggle() {\n  on.value = !on.value\n  emit('update:modelValue', on.value)\n}\n\nconst transition = computed(() =>\n  reduced.value\n    ? { duration: 0 }\n    : { type: 'spring' as const, stiffness: props.stiffness, damping: props.damping }\n)\n</script>\n\n<template>\n  <button\n    type=\"button\"\n    role=\"switch\"\n    :aria-checked=\"on\"\n    :aria-label=\"label ?? 'Toggle'\"\n    @click=\"toggle\"\n    :class=\"[\n      'relative inline-flex h-7 w-12 items-center justify-start rounded-full border border-foreground/10 p-1 outline-none transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background',\n      on ? 'bg-primary' : 'bg-foreground/[0.10]'\n    ]\"\n  >\n    <!-- The thumb springs 18px across the track; low damping gives the overshoot. -->\n    <motion.span\n      :animate=\"{ x: on ? 18 : 0 }\"\n      :transition=\"transition\"\n      class=\"size-5 rounded-full bg-white shadow-sm\"\n    />\n  </button>\n</template>\n",
+      "type": "registry:ui"
+    }
+  ]
+}

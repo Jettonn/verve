@@ -1,0 +1,20 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "animated-counter",
+  "type": "registry:ui",
+  "title": "AnimatedCounter",
+  "description": "A number that springs to each new value with tabular, roll-style motion.",
+  "dependencies": [
+    "motion-v@^2.3.0"
+  ],
+  "registryDependencies": [
+    "https://verve.jettonn.dev/r/use-reduced-motion.json"
+  ],
+  "files": [
+    {
+      "path": "ui/AnimatedCounter.vue",
+      "content": "<script setup lang=\"ts\">\n// Verve · AnimatedCounter\n// Spring-interpolates to the target value. Change `value` and the number\n// eases across with weight instead of snapping.\nimport { onUnmounted, ref, watch } from 'vue'\nimport { useSpring } from 'motion-v'\nimport { useReducedMotion } from '@/lib/useReducedMotion'\n\nconst props = withDefaults(\n  defineProps<{\n    value: number\n    /** Decimal places to render. */\n    decimals?: number\n    stiffness?: number\n    damping?: number\n  }>(),\n  { decimals: 0, stiffness: 120, damping: 20 }\n)\n\nconst reduced = useReducedMotion()\nconst spring = useSpring(props.value, { stiffness: props.stiffness, damping: props.damping })\nconst text = ref('')\n\nconst format = (v: number) =>\n  v.toLocaleString('en-US', {\n    minimumFractionDigits: props.decimals,\n    maximumFractionDigits: props.decimals\n  })\n\ntext.value = format(props.value)\nconst stop = spring.on('change', (v: number) => (text.value = format(v)))\n\nwatch(\n  () => props.value,\n  (v) => (reduced.value ? spring.jump(v) : spring.set(v))\n)\n\nonUnmounted(() => stop())\n</script>\n\n<template>\n  <span class=\"tabular-nums\">{{ text }}</span>\n</template>\n",
+      "type": "registry:ui"
+    }
+  ]
+}

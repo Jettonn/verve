@@ -1,0 +1,14 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "use-reduced-motion",
+  "type": "registry:lib",
+  "title": "useReducedMotion",
+  "description": "Reactive prefers-reduced-motion composable. Every Verve component degrades to instant state changes when it returns true.",
+  "files": [
+    {
+      "path": "lib/useReducedMotion.ts",
+      "content": "import { onMounted, onUnmounted, ref } from 'vue'\n\n/**\n * Reactive `prefers-reduced-motion`. Verve components fall back to instant\n * state changes when this is true — motion should never get in the way.\n */\nexport function useReducedMotion() {\n  const reduced = ref(false)\n  let mq: MediaQueryList | null = null\n  const update = () => {\n    if (mq) reduced.value = mq.matches\n  }\n\n  onMounted(() => {\n    mq = window.matchMedia('(prefers-reduced-motion: reduce)')\n    update()\n    mq.addEventListener('change', update)\n  })\n  onUnmounted(() => mq?.removeEventListener('change', update))\n\n  return reduced\n}\n",
+      "type": "registry:lib"
+    }
+  ]
+}

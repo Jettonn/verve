@@ -1,0 +1,41 @@
+# Verve
+
+> Verve is an open-source library of Vue micro-interaction and motion components, built on motion-v and Tailwind CSS. Components are copy-in: each is a single self-contained `.vue` file with no runtime package and no lock-in. Add them with the Verve CLI (`npx @jettonn/verve@latest add <name>`) or via any shadcn-vue–compatible client.
+
+## What it is
+
+- A curated set of animated Vue 3 components (buttons, toggles, switches, tooltips, accordions, counters, and more).
+- Distributed as source, not a dependency — you own and can tune every component.
+- A shadcn-vue–compatible registry served at `https://verve.jettonn.dev/r/<name>.json`.
+- Author: Jeton Korenica. License: MIT.
+
+## Install a component
+
+```bash
+npx @jettonn/verve@latest add forward-button   # add one component
+npx @jettonn/verve@latest add --all            # add every component
+npx @jettonn/verve@latest list                 # list available components
+```
+
+The CLI writes the component into `src/components/ui/`, adds the shared `useReducedMotion` composable to `src/lib/`, and installs its npm dependencies (`motion-v`, and `lucide-vue-next` for icon components).
+
+## Components
+
+- MagneticButton — a button that eases toward the cursor and snaps home on leave.
+- ThemeToggle — day/night switch with a sliding knob and cross-fading sun/moon.
+- AnimatedCounter — a number that animates to each new value with tabular motion.
+- StaggeredList — list items that animate in one after another.
+- ErrorShake — wraps a field and shakes it on invalid submit.
+- ForwardButton — slide-arrow action button.
+- VolumeButton — mute toggle whose icon morphs between states.
+- SegmentedControl — a segmented control with a pill that slides between options.
+- SpringSwitch — an on/off switch with an overshooting thumb.
+- Tooltip — a tooltip that opens after an intent delay.
+- Accordion — collapsible panels that expand to content height.
+
+## Links
+
+- Website: https://verve.jettonn.dev/
+- Source code: https://github.com/Jettonn/verve
+- CLI on npm: https://www.npmjs.com/package/@jettonn/verve
+- Registry index: https://verve.jettonn.dev/r/registry.json

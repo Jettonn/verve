@@ -1,0 +1,20 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "magnetic-button",
+  "type": "registry:ui",
+  "title": "MagneticButton",
+  "description": "A button that eases toward the cursor with a spring, then snaps home on leave.",
+  "dependencies": [
+    "motion-v@^2.3.0"
+  ],
+  "registryDependencies": [
+    "https://verve.jettonn.dev/r/use-reduced-motion.json"
+  ],
+  "files": [
+    {
+      "path": "ui/MagneticButton.vue",
+      "content": "<script setup lang=\"ts\">\n// Verve · MagneticButton\n// Springs toward the cursor while hovered, then snaps back on leave.\nimport { motion, useMotionValue, useSpring } from 'motion-v'\nimport { useReducedMotion } from '@/lib/useReducedMotion'\n\nconst props = withDefaults(\n  defineProps<{\n    /** How far it follows the cursor, 0–1. */\n    strength?: number\n    /** Spring tension. */\n    stiffness?: number\n    /** Spring friction. */\n    damping?: number\n  }>(),\n  { strength: 0.4, stiffness: 260, damping: 18 }\n)\n\nconst reduced = useReducedMotion()\nconst x = useMotionValue(0)\nconst y = useMotionValue(0)\nconst springX = useSpring(x, { stiffness: props.stiffness, damping: props.damping })\nconst springY = useSpring(y, { stiffness: props.stiffness, damping: props.damping })\n\nfunction onMove(e: MouseEvent) {\n  if (reduced.value) return\n  // `currentTarget` is the <button> the listener is bound to — a template ref on\n  // <motion.button> resolves to the motion-v component instance, not the DOM node.\n  const rect = (e.currentTarget as HTMLElement).getBoundingClientRect()\n  x.set((e.clientX - (rect.left + rect.width / 2)) * props.strength)\n  y.set((e.clientY - (rect.top + rect.height / 2)) * props.strength)\n}\n\nfunction reset() {\n  x.set(0)\n  y.set(0)\n}\n</script>\n\n<template>\n  <motion.button\n    :style=\"{ x: springX, y: springY }\"\n    :while-press=\"{ scale: 0.94 }\"\n    @mousemove=\"onMove\"\n    @mouseleave=\"reset\"\n    class=\"inline-flex h-11 items-center justify-center rounded-lg bg-primary px-6 text-sm font-medium text-primary-foreground shadow-sm outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background\"\n  >\n    <slot>Magnetic</slot>\n  </motion.button>\n</template>\n",
+      "type": "registry:ui"
+    }
+  ]
+}

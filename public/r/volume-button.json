@@ -1,0 +1,21 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "volume-button",
+  "type": "registry:ui",
+  "title": "VolumeButton",
+  "description": "Mute toggle whose icon morphs between states with a blurred scale swap.",
+  "dependencies": [
+    "motion-v@^2.3.0",
+    "lucide-vue-next"
+  ],
+  "registryDependencies": [
+    "https://verve.jettonn.dev/r/use-reduced-motion.json"
+  ],
+  "files": [
+    {
+      "path": "ui/VolumeButton.vue",
+      "content": "<script setup lang=\"ts\">\n// Verve · VolumeButton\n// Icon swap: two icons share one slot and cross-fade with a blurred scale, per\n// the transitions.dev icon-swap recipe (250ms ease-in-out). Click to mute /\n// unmute; hover gives a subtle lift. Emits `update:modelValue`.\nimport { computed, ref, watch } from 'vue'\nimport { motion, AnimatePresence } from 'motion-v'\nimport { Volume2, VolumeX } from 'lucide-vue-next'\nimport { useReducedMotion } from '@/lib/useReducedMotion'\n\nconst props = withDefaults(\n  defineProps<{\n    /** Muted state (v-model). */\n    modelValue?: boolean\n    label?: string\n    /** Icon-swap duration in seconds. */\n    duration?: number\n  }>(),\n  { label: 'Volume', duration: 0.25 }\n)\nconst emit = defineEmits<{ 'update:modelValue': [boolean] }>()\n\nconst reduced = useReducedMotion()\nconst muted = ref(props.modelValue ?? false)\nwatch(\n  () => props.modelValue,\n  (v) => v !== undefined && (muted.value = v)\n)\n\nfunction toggle() {\n  muted.value = !muted.value\n  emit('update:modelValue', muted.value)\n}\n\nconst transition = computed(() =>\n  reduced.value ? { duration: 0 } : { duration: props.duration, ease: 'easeInOut' as const }\n)\nconst whileHover = computed(() => (reduced.value ? undefined : { scale: 1.02 }))\nconst whilePress = computed(() => (reduced.value ? undefined : { scale: 0.96 }))\n</script>\n\n<template>\n  <motion.button\n    type=\"button\"\n    :aria-pressed=\"muted\"\n    :aria-label=\"muted ? 'Unmute' : 'Mute'\"\n    :while-hover=\"whileHover\"\n    :while-press=\"whilePress\"\n    @click=\"toggle\"\n    class=\"relative flex h-9 items-center justify-center rounded-full border border-foreground/10 bg-foreground/[0.04] px-6 text-[13px] font-medium tracking-tight text-foreground transition-colors hover:bg-foreground/[0.07] focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none\"\n  >\n    <span class=\"relative flex size-4 shrink-0 items-center justify-center\">\n      <AnimatePresence mode=\"popLayout\" :initial=\"false\">\n        <motion.span\n          v-if=\"!muted\"\n          key=\"on\"\n          :initial=\"{ opacity: 0, scale: 0.25, filter: 'blur(2px)' }\"\n          :animate=\"{ opacity: 1, scale: 1, filter: 'blur(0px)' }\"\n          :exit=\"{ opacity: 0, scale: 0.25, filter: 'blur(2px)' }\"\n          :transition=\"transition\"\n          class=\"absolute inset-0 flex items-center justify-center\"\n        >\n          <Volume2 class=\"size-4\" />\n        </motion.span>\n        <motion.span\n          v-else\n          key=\"off\"\n          :initial=\"{ opacity: 0, scale: 0.25, filter: 'blur(2px)' }\"\n          :animate=\"{ opacity: 1, scale: 1, filter: 'blur(0px)' }\"\n          :exit=\"{ opacity: 0, scale: 0.25, filter: 'blur(2px)' }\"\n          :transition=\"transition\"\n          class=\"absolute inset-0 flex items-center justify-center text-muted-foreground\"\n        >\n          <VolumeX class=\"size-4\" />\n        </motion.span>\n      </AnimatePresence>\n    </span>\n    <span class=\"ml-2.5\">{{ label }}</span>\n  </motion.button>\n</template>\n",
+      "type": "registry:ui"
+    }
+  ]
+}

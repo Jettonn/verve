@@ -1,0 +1,20 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "tooltip",
+  "type": "registry:ui",
+  "title": "Tooltip",
+  "description": "A tooltip that springs open after an intent delay and closes instantly.",
+  "dependencies": [
+    "motion-v@^2.3.0"
+  ],
+  "registryDependencies": [
+    "https://verve.jettonn.dev/r/use-reduced-motion.json"
+  ],
+  "files": [
+    {
+      "path": "ui/Tooltip.vue",
+      "content": "<script setup lang=\"ts\">\n// Verve · Tooltip\n// A spring-scaled tooltip that grows out of the trigger it wraps. A short\n// intent delay on hover keeps a passing cursor from triggering it, while focus\n// and dismissal are instant — a close should never wait. Falls back to a quick\n// fade under reduced motion.\nimport { computed, onUnmounted, ref } from 'vue'\nimport { motion, AnimatePresence } from 'motion-v'\nimport { useReducedMotion } from '@/lib/useReducedMotion'\n\nconst props = withDefaults(\n  defineProps<{\n    /** Tooltip text (or use the `content` slot for markup). */\n    content?: string\n    /** Which side of the trigger to appear on. */\n    side?: 'top' | 'bottom'\n    /** Intent delay (ms) before a hover opens it — filters passing cursors. */\n    openDelay?: number\n    stiffness?: number\n    damping?: number\n  }>(),\n  { side: 'top', openDelay: 80, stiffness: 500, damping: 30 }\n)\n\nconst reduced = useReducedMotion()\nconst open = ref(false)\nconst offset = computed(() => (props.side === 'top' ? 4 : -4))\n\n// Hover waits out the intent delay; focus and any close are instant.\nlet timer: ReturnType<typeof setTimeout> | undefined\nfunction openAfterDelay() {\n  timer = setTimeout(() => (open.value = true), props.openDelay)\n}\nfunction show() {\n  clearTimeout(timer)\n  open.value = true\n}\nfunction hide() {\n  clearTimeout(timer)\n  open.value = false\n}\nonUnmounted(() => clearTimeout(timer))\n\nconst transition = computed(() =>\n  reduced.value\n    ? { duration: 0.12 }\n    : { type: 'spring' as const, stiffness: props.stiffness, damping: props.damping }\n)\n</script>\n\n<template>\n  <span\n    class=\"relative inline-flex\"\n    @mouseenter=\"openAfterDelay\"\n    @mouseleave=\"hide\"\n    @focusin=\"show\"\n    @focusout=\"hide\"\n  >\n    <slot />\n\n    <AnimatePresence>\n      <motion.span\n        v-if=\"open\"\n        key=\"tip\"\n        role=\"tooltip\"\n        :initial=\"{ opacity: 0, scale: 0.94, y: offset }\"\n        :animate=\"{ opacity: 1, scale: 1, y: 0 }\"\n        :exit=\"{ opacity: 0, scale: 0.94, y: offset }\"\n        :transition=\"transition\"\n        :class=\"[\n          'pointer-events-none absolute left-1/2 z-50 -translate-x-1/2 whitespace-nowrap rounded-md bg-foreground px-2.5 py-1 text-xs font-medium text-background shadow-md',\n          side === 'top' ? 'bottom-full mb-2 origin-bottom' : 'top-full mt-2 origin-top'\n        ]\"\n      >\n        <slot name=\"content\">{{ content }}</slot>\n      </motion.span>\n    </AnimatePresence>\n  </span>\n</template>\n",
+      "type": "registry:ui"
+    }
+  ]
+}

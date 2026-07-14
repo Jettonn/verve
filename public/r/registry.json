@@ -1,0 +1,91 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry.json",
+  "name": "verve",
+  "homepage": "https://verve.jettonn.dev",
+  "items": [
+    {
+      "name": "use-reduced-motion",
+      "type": "registry:lib",
+      "title": "useReducedMotion",
+      "description": "Reactive prefers-reduced-motion composable. Every Verve component degrades to instant state changes when it returns true.",
+      "url": "https://verve.jettonn.dev/r/use-reduced-motion.json"
+    },
+    {
+      "name": "magnetic-button",
+      "type": "registry:ui",
+      "title": "MagneticButton",
+      "description": "A button that eases toward the cursor with a spring, then snaps home on leave.",
+      "url": "https://verve.jettonn.dev/r/magnetic-button.json"
+    },
+    {
+      "name": "theme-toggle",
+      "type": "registry:ui",
+      "title": "ThemeToggle",
+      "description": "Day/night switch: the knob springs across while sun and moon cross-fade with a blurred scale.",
+      "url": "https://verve.jettonn.dev/r/theme-toggle.json"
+    },
+    {
+      "name": "animated-counter",
+      "type": "registry:ui",
+      "title": "AnimatedCounter",
+      "description": "A number that springs to each new value with tabular, roll-style motion.",
+      "url": "https://verve.jettonn.dev/r/animated-counter.json"
+    },
+    {
+      "name": "staggered-list",
+      "type": "registry:ui",
+      "title": "StaggeredList",
+      "description": "List items spring in one after another with a blurred rise.",
+      "url": "https://verve.jettonn.dev/r/staggered-list.json"
+    },
+    {
+      "name": "error-shake",
+      "type": "registry:ui",
+      "title": "ErrorShake",
+      "description": "Wraps a field and shakes it on invalid submit. Exposes a shake() method.",
+      "url": "https://verve.jettonn.dev/r/error-shake.json"
+    },
+    {
+      "name": "forward-button",
+      "type": "registry:ui",
+      "title": "ForwardButton",
+      "description": "Slide-arrow action button — the arrow leads, the label follows, on a spring.",
+      "url": "https://verve.jettonn.dev/r/forward-button.json"
+    },
+    {
+      "name": "volume-button",
+      "type": "registry:ui",
+      "title": "VolumeButton",
+      "description": "Mute toggle whose icon morphs between states with a blurred scale swap.",
+      "url": "https://verve.jettonn.dev/r/volume-button.json"
+    },
+    {
+      "name": "segmented-control",
+      "type": "registry:ui",
+      "title": "SegmentedControl",
+      "description": "A segmented control with a pill that slides between options. Keyboard-navigable.",
+      "url": "https://verve.jettonn.dev/r/segmented-control.json"
+    },
+    {
+      "name": "spring-switch",
+      "type": "registry:ui",
+      "title": "SpringSwitch",
+      "description": "An on/off switch whose thumb overshoots with a springy settle.",
+      "url": "https://verve.jettonn.dev/r/spring-switch.json"
+    },
+    {
+      "name": "tooltip",
+      "type": "registry:ui",
+      "title": "Tooltip",
+      "description": "A tooltip that springs open after an intent delay and closes instantly.",
+      "url": "https://verve.jettonn.dev/r/tooltip.json"
+    },
+    {
+      "name": "accordion",
+      "type": "registry:ui",
+      "title": "Accordion",
+      "description": "Collapsible panels that expand to their content height on a smooth ease, with a chevron that rotates with a springy overshoot. Pure CSS.",
+      "url": "https://verve.jettonn.dev/r/accordion.json"
+    }
+  ]
+}

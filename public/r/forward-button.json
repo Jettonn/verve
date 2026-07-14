@@ -1,0 +1,21 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "forward-button",
+  "type": "registry:ui",
+  "title": "ForwardButton",
+  "description": "Slide-arrow action button — the arrow leads, the label follows, on a spring.",
+  "dependencies": [
+    "motion-v@^2.3.0",
+    "lucide-vue-next"
+  ],
+  "registryDependencies": [
+    "https://verve.jettonn.dev/r/use-reduced-motion.json"
+  ],
+  "files": [
+    {
+      "path": "ui/ForwardButton.vue",
+      "content": "<script setup lang=\"ts\">\n// Verve · ForwardButton\n// Slide-arrow interaction: on hover the leading icon slides out to the left as\n// a trailing arrow slides in from the right, and the label re-centers between\n// them (popLayout). A faithful port of the Amicro slide-arrow button.\n//\n// Reusable:\n//   <ForwardButton label=\"Reply\" />                      · just change the text\n//   <ForwardButton><template #leading><Send /></template> · swap either icon\n//   <ForwardButton :stiffness=\"500\" :damping=\"30\" />      · retune the spring\nimport { computed, ref } from 'vue'\nimport { motion, AnimatePresence } from 'motion-v'\nimport { Mail, ArrowRight } from 'lucide-vue-next'\nimport { useReducedMotion } from '@/lib/useReducedMotion'\n\nconst props = withDefaults(\n  defineProps<{\n    /** Text shown between the two icons. */\n    label?: string\n    /** Spring tension for the icon slide. */\n    stiffness?: number\n    /** Spring friction for the icon slide. */\n    damping?: number\n  }>(),\n  { label: 'Forward email', stiffness: 450, damping: 26 }\n)\n\nconst reduced = useReducedMotion()\nconst hovered = ref(false)\n\n// Instant swap when the visitor asks for reduced motion; a spring otherwise.\nconst transition = computed(() =>\n  reduced.value\n    ? { duration: 0 }\n    : { type: 'spring' as const, stiffness: props.stiffness, damping: props.damping }\n)\nconst whileHover = computed(() => (reduced.value ? undefined : { scale: 1.02 }))\nconst whilePress = computed(() => (reduced.value ? undefined : { scale: 0.96 }))\n</script>\n\n<template>\n  <motion.button\n    type=\"button\"\n    :while-hover=\"whileHover\"\n    :while-press=\"whilePress\"\n    @mouseenter=\"hovered = true\"\n    @mouseleave=\"hovered = false\"\n    class=\"relative flex h-9 items-center justify-center rounded-full border border-foreground/10 bg-foreground/[0.04] px-6 text-[13px] font-medium tracking-tight text-foreground transition-colors duration-150 hover:bg-foreground/[0.07] focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none\"\n  >\n    <AnimatePresence mode=\"popLayout\">\n      <motion.div\n        v-if=\"!hovered\"\n        key=\"leading\"\n        :initial=\"{ opacity: 0, x: -10 }\"\n        :animate=\"{ opacity: 1, x: 0 }\"\n        :exit=\"{ opacity: 0, x: -10 }\"\n        :transition=\"transition\"\n        class=\"mr-2.5 flex shrink-0 items-center\"\n      >\n        <slot name=\"leading\"><Mail class=\"size-4\" /></slot>\n      </motion.div>\n    </AnimatePresence>\n\n    <span>{{ label }}</span>\n\n    <AnimatePresence mode=\"popLayout\">\n      <motion.div\n        v-if=\"hovered\"\n        key=\"trailing\"\n        :initial=\"{ opacity: 0, x: 10 }\"\n        :animate=\"{ opacity: 1, x: 0 }\"\n        :exit=\"{ opacity: 0, x: 10 }\"\n        :transition=\"transition\"\n        class=\"ml-2.5 flex shrink-0 items-center\"\n      >\n        <slot name=\"trailing\"><ArrowRight class=\"size-4\" /></slot>\n      </motion.div>\n    </AnimatePresence>\n  </motion.button>\n</template>\n",
+      "type": "registry:ui"
+    }
+  ]
+}

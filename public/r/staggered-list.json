@@ -1,0 +1,20 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "staggered-list",
+  "type": "registry:ui",
+  "title": "StaggeredList",
+  "description": "List items spring in one after another with a blurred rise.",
+  "dependencies": [
+    "motion-v@^2.3.0"
+  ],
+  "registryDependencies": [
+    "https://verve.jettonn.dev/r/use-reduced-motion.json"
+  ],
+  "files": [
+    {
+      "path": "ui/StaggeredList.vue",
+      "content": "<script setup lang=\"ts\">\n// Verve · StaggeredList\n// Children spring in one after another using a parent/child variant\n// cascade. Great for menus, search results and empty-state reveals.\nimport { motion } from 'motion-v'\nimport { useReducedMotion } from '@/lib/useReducedMotion'\n\nconst props = withDefaults(\n  defineProps<{\n    items: string[]\n    /** Seconds between each child. */\n    stagger?: number\n  }>(),\n  { stagger: 0.04 }\n)\n\nconst reduced = useReducedMotion()\n\nconst container = {\n  hidden: {},\n  show: {\n    transition: { staggerChildren: reduced.value ? 0 : props.stagger }\n  }\n}\n\nconst item = {\n  hidden: { opacity: 0, y: 12, filter: 'blur(4px)' },\n  show: {\n    opacity: 1,\n    y: 0,\n    filter: 'blur(0px)',\n    transition: { type: 'spring', stiffness: 320, damping: 24 }\n  }\n}\n</script>\n\n<template>\n  <motion.ul\n    :variants=\"container\"\n    initial=\"hidden\"\n    animate=\"show\"\n    class=\"flex w-full max-w-xs flex-col gap-2\"\n  >\n    <motion.li\n      v-for=\"entry in items\"\n      :key=\"entry\"\n      :variants=\"item\"\n      class=\"rounded-md border bg-card px-3 py-2 text-sm text-card-foreground\"\n    >\n      {{ entry }}\n    </motion.li>\n  </motion.ul>\n</template>\n",
+      "type": "registry:ui"
+    }
+  ]
+}

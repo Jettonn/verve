@@ -1,0 +1,32 @@
+{
+  "name": "@jettonn/verve",
+  "version": "0.1.1",
+  "description": "Add Verve micro-interaction motion components to your Vue app.",
+  "type": "module",
+  "bin": {
+    "verve": "index.mjs"
+  },
+  "files": [
+    "index.mjs",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "vue",
+    "motion",
+    "spring",
+    "components",
+    "cli",
+    "shadcn",
+    "registry"
+  ],
+  "license": "MIT",
+  "homepage": "https://verve.jettonn.dev",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Jettonn/verve.git",
+    "directory": "cli"
+  }
+}

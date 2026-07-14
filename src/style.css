@@ -1,0 +1,139 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Design tokens — a small neutral palette with a Vue-green accent. */
+:root {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.21 0.006 285.9);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.21 0.006 285.9);
+  --muted: oklch(0.967 0.001 286.4);
+  --muted-foreground: oklch(0.552 0.014 285.9);
+  --border: oklch(0.92 0.004 286.3);
+  --input: oklch(0.92 0.004 286.3);
+  --ring: oklch(0.705 0.15 160);
+  --primary: oklch(0.723 0.161 160.2);
+  --primary-foreground: oklch(0.98 0.01 155);
+  --secondary: oklch(0.967 0.001 286.4);
+  --secondary-foreground: oklch(0.21 0.006 285.9);
+  --destructive: oklch(0.577 0.245 27.3);
+  --radius: 0.625rem;
+  /* Faint dot-grid drawn behind each preview stage. */
+  --dot: oklch(0 0 0 / 5%);
+}
+
+.dark {
+  /* Near-black canvas — the Amicro-flavored dark surface. */
+  --background: oklch(0.145 0.004 285.9);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.185 0.005 285.9);
+  --card-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.235 0.006 286);
+  --muted-foreground: oklch(0.708 0.013 286.1);
+  --border: oklch(1 0 0 / 9%);
+  --input: oklch(1 0 0 / 12%);
+  --ring: oklch(0.723 0.161 160.2);
+  --primary: oklch(0.723 0.161 160.2);
+  --primary-foreground: oklch(0.18 0.02 160);
+  --secondary: oklch(0.27 0.006 286);
+  --secondary-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.2);
+  --dot: oklch(1 0 0 / 5%);
+}
+
+@theme inline {
+  --font-sans:
+    'Uncut Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial,
+    sans-serif;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-destructive: var(--destructive);
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Missing weights/styles fail visibly instead of rendering a faked bold/italic. */
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+  }
+  /* Brand-tinted selection, kept legible in both themes. */
+  ::selection {
+    background-color: color-mix(in oklch, var(--primary) 28%, transparent);
+  }
+}
+
+@layer components {
+  /* Tactile press: a subtle scale-down on click plus smooth color/opacity
+     transitions — specific properties only, never `transition: all`. Honors
+     reduced-motion by dropping the scale. */
+  .interactive {
+    transition-property: color, background-color, border-color, opacity, scale;
+    transition-duration: 150ms;
+    transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+  }
+  .interactive:active {
+    scale: 0.96;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .interactive:active {
+      scale: 1;
+    }
+  }
+
+  /* Faint dot-grid used behind component previews. */
+  .dot-grid {
+    background-image: radial-gradient(var(--dot) 1px, transparent 1px);
+    background-size: 18px 18px;
+    background-position: center;
+  }
+
+  /* Subtle, theme-matched scrollbar for scroll areas (code blocks, panels) —
+     transparent track, a token-colored pill thumb, no OS white background. */
+  .scrollbar-subtle {
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+  }
+  .scrollbar-subtle::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  .scrollbar-subtle::-webkit-scrollbar-track,
+  .scrollbar-subtle::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+  .scrollbar-subtle::-webkit-scrollbar-thumb {
+    background-color: var(--border);
+    background-clip: padding-box;
+    border: 3px solid transparent;
+    border-radius: 9999px;
+  }
+  .scrollbar-subtle::-webkit-scrollbar-thumb:hover {
+    background-color: var(--muted-foreground);
+  }
+}

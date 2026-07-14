@@ -1,0 +1,20 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "error-shake",
+  "type": "registry:ui",
+  "title": "ErrorShake",
+  "description": "Wraps a field and shakes it on invalid submit. Exposes a shake() method.",
+  "dependencies": [
+    "motion-v@^2.3.0"
+  ],
+  "registryDependencies": [
+    "https://verve.jettonn.dev/r/use-reduced-motion.json"
+  ],
+  "files": [
+    {
+      "path": "ui/ErrorShake.vue",
+      "content": "<script setup lang=\"ts\">\n// Verve · ErrorShake\n// Call `shake()` (or toggle the `error` prop) to play a short, weighted\n// horizontal shake — the classic \"wrong password\" nudge.\nimport { ref, watch } from 'vue'\nimport { motion } from 'motion-v'\nimport { useReducedMotion } from '@/lib/useReducedMotion'\n\nconst props = defineProps<{ error?: boolean }>()\nconst reduced = useReducedMotion()\nconst controls = ref(0)\n\nfunction shake() {\n  if (reduced.value) return\n  controls.value++\n}\n\nwatch(\n  () => props.error,\n  (v) => v && shake()\n)\n\ndefineExpose({ shake })\n</script>\n\n<template>\n  <motion.div\n    :animate=\"controls > 0 ? { x: [0, -8, 8, -6, 6, -3, 0] } : {}\"\n    :transition=\"{ duration: 0.45, ease: 'easeInOut' }\"\n    :key=\"controls\"\n  >\n    <slot />\n  </motion.div>\n</template>\n",
+      "type": "registry:ui"
+    }
+  ]
+}

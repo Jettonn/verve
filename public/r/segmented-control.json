@@ -1,0 +1,20 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "segmented-control",
+  "type": "registry:ui",
+  "title": "SegmentedControl",
+  "description": "A segmented control with a pill that slides between options. Keyboard-navigable.",
+  "dependencies": [
+    "motion-v@^2.3.0"
+  ],
+  "registryDependencies": [
+    "https://verve.jettonn.dev/r/use-reduced-motion.json"
+  ],
+  "files": [
+    {
+      "path": "ui/SegmentedControl.vue",
+      "content": "<script setup lang=\"ts\">\n// Verve · SegmentedControl\n// The active pill glides between segments via a shared-element layout\n// animation (one `layoutId`, so motion morphs it from the old segment to the\n// new one). Emits `update:modelValue`. Keyboard-navigable with arrow keys.\nimport { computed, ref, useId, watch } from 'vue'\nimport { motion } from 'motion-v'\nimport { useReducedMotion } from '@/lib/useReducedMotion'\n\nconst props = withDefaults(\n  defineProps<{\n    /** Segment labels. */\n    options: string[]\n    /** Selected label (v-model). */\n    modelValue?: string\n    stiffness?: number\n    damping?: number\n  }>(),\n  { stiffness: 400, damping: 32 }\n)\nconst emit = defineEmits<{ 'update:modelValue': [string] }>()\n\nconst reduced = useReducedMotion()\nconst uid = useId()\nconst active = ref(props.modelValue ?? props.options[0])\nwatch(\n  () => props.modelValue,\n  (v) => v !== undefined && (active.value = v)\n)\n\nfunction select(opt: string) {\n  active.value = opt\n  emit('update:modelValue', opt)\n}\n\nfunction move(dir: number) {\n  const i = props.options.indexOf(active.value)\n  const next = props.options[(i + dir + props.options.length) % props.options.length]\n  select(next)\n}\n\nconst transition = computed(() =>\n  reduced.value\n    ? { duration: 0 }\n    : { type: 'spring' as const, stiffness: props.stiffness, damping: props.damping }\n)\n</script>\n\n<template>\n  <div\n    role=\"tablist\"\n    class=\"inline-flex items-center gap-1 rounded-full border border-foreground/10 bg-foreground/4 p-1\"\n    @keydown.left.prevent=\"move(-1)\"\n    @keydown.right.prevent=\"move(1)\"\n  >\n    <button\n      v-for=\"opt in options\"\n      :key=\"opt\"\n      type=\"button\"\n      role=\"tab\"\n      :aria-selected=\"active === opt\"\n      :tabindex=\"active === opt ? 0 : -1\"\n      @click=\"select(opt)\"\n      class=\"relative rounded-full px-3.5 py-1.5 text-[13px] font-medium tracking-tight outline-none transition-colors focus-visible:ring-2 focus-visible:ring-ring\"\n      :class=\"\n        active === opt ? 'text-primary-foreground' : 'text-muted-foreground hover:text-foreground'\n      \"\n    >\n      <motion.span\n        v-if=\"active === opt\"\n        :layout-id=\"`seg-${uid}`\"\n        :transition=\"transition\"\n        class=\"absolute inset-0 rounded-full bg-primary\"\n      />\n      <span class=\"relative z-10\">{{ opt }}</span>\n    </button>\n  </div>\n</template>\n",
+      "type": "registry:ui"
+    }
+  ]
+}
