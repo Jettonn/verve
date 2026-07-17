@@ -19,6 +19,9 @@ coverage
 vite.config.js
 vite.config.d.ts
 
+# Browser automation output (Playwright MCP snapshots/logs)
+.playwright-mcp/
+
 # Logs
 logs
 *.log

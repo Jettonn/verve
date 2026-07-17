@@ -45,6 +45,8 @@ watch(
   },
   { immediate: true }
 )
+
+const year = new Date().getFullYear()
 </script>
 
 <template>
@@ -88,14 +90,46 @@ watch(
 
     <RouterView />
 
-    <footer class="border-t border-foreground/10">
-      <div
-        class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 px-6 py-8 text-xs text-muted-foreground sm:flex-row"
-      >
-        <p>Verve · MIT · built with Vue, Tailwind &amp; motion-v</p>
-        <RouterLink to="/#components" class="transition-colors hover:text-foreground">
-          Browse components
-        </RouterLink>
+    <footer class="mt-8 border-t border-foreground/10">
+      <div class="mx-auto max-w-6xl px-6 py-12">
+        <div class="flex flex-col items-start justify-between gap-8 sm:flex-row sm:items-center">
+          <div class="max-w-xs">
+            <RouterLink to="/" class="flex items-center gap-2.5" aria-label="Verve home">
+              <VerveMark class="h-6 w-auto text-primary" />
+              <span class="text-sm font-semibold tracking-tight">Verve</span>
+            </RouterLink>
+            <p class="mt-3 text-[13px] leading-relaxed text-muted-foreground">
+              Micro-interaction and motion components for Vue. Copy the source, tune the spring,
+              ship the feel.
+            </p>
+          </div>
+          <nav
+            class="flex items-center gap-6 text-[13px] font-medium tracking-tight text-muted-foreground"
+          >
+            <RouterLink to="/#components" class="transition-colors hover:text-foreground">
+              Components
+            </RouterLink>
+            <RouterLink to="/#install" class="transition-colors hover:text-foreground">
+              Install
+            </RouterLink>
+            <a
+              :href="REPO_URL"
+              target="_blank"
+              rel="noreferrer"
+              class="inline-flex items-center gap-1.5 transition-colors hover:text-foreground"
+            >
+              <Github class="size-3.5" />
+              GitHub
+            </a>
+          </nav>
+        </div>
+
+        <div
+          class="mt-10 flex flex-col items-center justify-between gap-3 border-t border-foreground/10 pt-6 text-xs text-muted-foreground sm:flex-row"
+        >
+          <p>&copy; {{ year }} Jeton Korenica</p>
+          <p>Built with Vue, Tailwind, and motion-v. MIT Licensed.</p>
+        </div>
       </div>
     </footer>
   </div>

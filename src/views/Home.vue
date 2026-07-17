@@ -114,7 +114,7 @@ const demoBtn =
       </h1>
       <p class="mx-auto mt-5 max-w-xl text-pretty text-base text-muted-foreground sm:text-lg">
         A curated set of micro-interactions components for Vue. Add them with the CLI or copy the
-        source, tune the springs, and ship the feel — no runtime package, no lock-in.
+        source, tune the springs, and ship the feel - no runtime package, no lock-in.
       </p>
       <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
         <a
@@ -134,6 +134,9 @@ const demoBtn =
           Browse components
         </button>
       </div>
+      <p class="mx-auto mt-6 text-[13px] text-muted-foreground">
+        No component library. Just plain Vue, Tailwind, and motion-v.
+      </p>
     </section>
 
     <section id="install" class="mx-auto max-w-6xl scroll-mt-20 px-6 pb-6 pt-10">
