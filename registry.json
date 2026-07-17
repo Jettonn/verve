@@ -107,6 +107,40 @@
       "description": "Collapsible panels that expand to their content height on a smooth ease, with a chevron that rotates with a springy overshoot. Pure CSS.",
       "dependencies": ["lucide-vue-next"],
       "files": [{ "path": "src/components/Accordion.vue", "type": "registry:ui" }]
+    },
+    {
+      "name": "tag-input",
+      "type": "registry:ui",
+      "title": "TagInput",
+      "description": "A tag field: Enter pops a pill in with a back-eased overshoot, × removes it with a scale-down fade, and Backspace clears the last. Highlights on focus-within.",
+      "dependencies": ["motion-v@^2.3.0", "lucide-vue-next"],
+      "registryDependencies": ["use-reduced-motion"],
+      "files": [{ "path": "src/components/TagInput.vue", "type": "registry:ui" }]
+    },
+    {
+      "name": "pin-input",
+      "type": "registry:ui",
+      "title": "PinInput",
+      "description": "A one-time-code field of single-character boxes. Each digit pops in with a back-eased scale and advances focus; Backspace in an empty box steps back. Emits a complete event.",
+      "dependencies": ["motion-v@^2.3.0"],
+      "registryDependencies": ["use-reduced-motion"],
+      "files": [{ "path": "src/components/PinInput.vue", "type": "registry:ui" }]
+    },
+    {
+      "name": "ripple-button",
+      "type": "registry:ui",
+      "title": "RippleButton",
+      "description": "A button with a material-style ripple that starts at the exact click point, scaling out and fading over 0.6s inside an overflow-hidden face.",
+      "dependencies": ["motion-v@^2.3.0"],
+      "registryDependencies": ["use-reduced-motion"],
+      "files": [{ "path": "src/components/RippleButton.vue", "type": "registry:ui" }]
+    },
+    {
+      "name": "marquee",
+      "type": "registry:ui",
+      "title": "Marquee",
+      "description": "An infinite horizontal chip loop that pauses on hover, with edge mask fades. The list is duplicated and slid translateX 0 to -50% for a seamless loop. Pure CSS.",
+      "files": [{ "path": "src/components/Marquee.vue", "type": "registry:ui" }]
     }
   ]
 }

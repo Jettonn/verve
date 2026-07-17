@@ -54,7 +54,10 @@ const iconSize = computed(() => (props.size === 'sm' ? 'size-3.5' : 'size-4'))
     <motion.span
       layout
       :transition="knob"
-      :class="['flex items-center justify-center rounded-full bg-background text-foreground shadow-sm', knobSize]"
+      :class="[
+        'flex items-center justify-center rounded-full bg-background text-foreground shadow-sm',
+        knobSize
+      ]"
     >
       <AnimatePresence mode="popLayout" :initial="false">
         <motion.span

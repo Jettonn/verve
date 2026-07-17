@@ -1,0 +1,14 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "marquee",
+  "type": "registry:ui",
+  "title": "Marquee",
+  "description": "An infinite horizontal chip loop that pauses on hover, with edge mask fades. The list is duplicated and slid translateX 0 to -50% for a seamless loop. Pure CSS.",
+  "files": [
+    {
+      "path": "ui/Marquee.vue",
+      "content": "<script setup lang=\"ts\">\n// Verve · Marquee\n// An infinite horizontal chip loop. The list is rendered twice and the track\n// slides translateX 0 → -50% on a linear infinite keyframe — since half the\n// track is exactly one copy, the seam is invisible. Each chip carries its own\n// right margin (not flex gap) so -50% lands the duplicate precisely on the\n// original. Hover pauses via animation-play-state; edge mask-image fades the\n// ends. Pure CSS — reduced motion stops the scroll.\nwithDefaults(\n  defineProps<{\n    items: string[]\n    /** Seconds for one full loop. */\n    duration?: number\n    /** Scroll rightward instead of left. */\n    reverse?: boolean\n    /** Freeze the track while hovered. */\n    pauseOnHover?: boolean\n  }>(),\n  { duration: 24, reverse: false, pauseOnHover: true }\n)\n</script>\n\n<template>\n  <div class=\"marquee relative overflow-hidden py-1.5\" :class=\"{ 'marquee--pause': pauseOnHover }\">\n    <div\n      class=\"track flex w-max\"\n      :style=\"{\n        animationDuration: `${duration}s`,\n        animationDirection: reverse ? 'reverse' : 'normal'\n      }\"\n    >\n      <span\n        v-for=\"(chip, i) in items\"\n        :key=\"`a-${i}`\"\n        class=\"mr-3 shrink-0 rounded-full border border-foreground/10 bg-foreground/[0.04] px-3.5 py-1.5 text-[13px] font-medium tracking-tight text-foreground\"\n      >\n        {{ chip }}\n      </span>\n      <!-- Duplicate copy: hidden from assistive tech, present only for the loop. -->\n      <span\n        v-for=\"(chip, i) in items\"\n        :key=\"`b-${i}`\"\n        aria-hidden=\"true\"\n        class=\"mr-3 shrink-0 rounded-full border border-foreground/10 bg-foreground/[0.04] px-3.5 py-1.5 text-[13px] font-medium tracking-tight text-foreground\"\n      >\n        {{ chip }}\n      </span>\n    </div>\n  </div>\n</template>\n\n<style scoped>\n.marquee {\n  -webkit-mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);\n  mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);\n}\n.track {\n  animation: verve-marquee linear infinite;\n  will-change: transform;\n}\n.marquee--pause:hover .track {\n  animation-play-state: paused;\n}\n@keyframes verve-marquee {\n  from {\n    transform: translateX(0);\n  }\n  to {\n    transform: translateX(-50%);\n  }\n}\n@media (prefers-reduced-motion: reduce) {\n  .track {\n    animation: none;\n  }\n}\n</style>\n",
+      "type": "registry:ui"
+    }
+  ]
+}

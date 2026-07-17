@@ -16,7 +16,11 @@ import {
   AnimatedCounter,
   StaggeredList,
   ErrorShake,
-  Accordion
+  Accordion,
+  TagInput,
+  PinInput,
+  RippleButton,
+  Marquee
 } from './components'
 
 // Raw sources for the copy-to-clipboard buttons.
@@ -31,6 +35,10 @@ import CounterSrc from './components/AnimatedCounter.vue?raw'
 import StaggeredSrc from './components/StaggeredList.vue?raw'
 import ErrorShakeSrc from './components/ErrorShake.vue?raw'
 import AccordionSrc from './components/Accordion.vue?raw'
+import TagInputSrc from './components/TagInput.vue?raw'
+import PinInputSrc from './components/PinInput.vue?raw'
+import RippleButtonSrc from './components/RippleButton.vue?raw'
+import MarqueeSrc from './components/Marquee.vue?raw'
 
 // Will resolve once the repo is pushed under the active account.
 const repoUrl = 'https://github.com/Jettonn/verve'
@@ -86,6 +94,18 @@ const accordionItems = [
   }
 ]
 const shakeRef = ref<InstanceType<typeof ErrorShake> | null>(null)
+const tags = ref(['Vue', 'Motion'])
+const pin = ref('')
+const marqueeChips = [
+  'Spring',
+  'Stagger',
+  'Ripple',
+  'Tooltip',
+  'Magnetic',
+  'Tween',
+  'Blur',
+  'Overshoot'
+]
 
 const demoBtn =
   'interactive rounded-full border border-foreground/10 bg-foreground/[0.04] px-3 py-1.5 text-xs font-medium tracking-tight text-foreground hover:bg-foreground/[0.07]'
@@ -294,6 +314,30 @@ const demoBtn =
             :source="AccordionSrc"
           >
             <Accordion :items="accordionItems" :default-open="0" class="w-full max-w-xs" />
+          </ComponentCard>
+
+          <ComponentCard name="TagInput" interaction="Spring-pop tag pills" :source="TagInputSrc">
+            <TagInput v-model="tags" placeholder="Type + Enter…" />
+          </ComponentCard>
+
+          <ComponentCard name="PinInput" interaction="Digit-pop code boxes" :source="PinInputSrc">
+            <PinInput v-model="pin" />
+          </ComponentCard>
+
+          <ComponentCard
+            name="RippleButton"
+            interaction="Click-point ripple"
+            :source="RippleButtonSrc"
+          >
+            <RippleButton>Press anywhere</RippleButton>
+          </ComponentCard>
+
+          <ComponentCard
+            name="Marquee"
+            interaction="Looping hover-pause scroll"
+            :source="MarqueeSrc"
+          >
+            <Marquee :items="marqueeChips" class="w-full" />
           </ComponentCard>
         </div>
       </section>
