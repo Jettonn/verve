@@ -17,7 +17,17 @@
     "preview": "vite preview",
     "type-check": "vue-tsc --build",
     "lint": "eslint . --fix",
-    "format": "prettier --write src/"
+    "lint:check": "eslint .",
+    "format": "prettier --write src/",
+    "format:check": "prettier --check src/",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{ts,vue,js,mjs}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,css,md,html}": "prettier --write"
   },
   "dependencies": {
     "@fontsource/uncut-sans": "^5.2.5",
@@ -35,6 +45,8 @@
     "@vue/tsconfig": "^0.5.1",
     "eslint": "^9.39.5",
     "eslint-plugin-vue": "^9.33.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.0.8",
     "npm-run-all2": "^7.0.2",
     "postcss": "^8.5.19",
     "prettier": "^3.9.5",
