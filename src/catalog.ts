@@ -18,6 +18,9 @@ import TagInput from './components/TagInput.vue'
 import PinInput from './components/PinInput.vue'
 import RippleButton from './components/RippleButton.vue'
 import Marquee from './components/Marquee.vue'
+import QuantityStepper from './components/QuantityStepper.vue'
+import FilterChips from './components/FilterChips.vue'
+import HoldToConfirm from './components/HoldToConfirm.vue'
 
 import MagneticSrc from './components/MagneticButton.vue?raw'
 import ThemeToggleSrc from './components/ThemeToggle.vue?raw'
@@ -34,6 +37,9 @@ import TagInputSrc from './components/TagInput.vue?raw'
 import PinInputSrc from './components/PinInput.vue?raw'
 import RippleButtonSrc from './components/RippleButton.vue?raw'
 import MarqueeSrc from './components/Marquee.vue?raw'
+import QuantityStepperSrc from './components/QuantityStepper.vue?raw'
+import FilterChipsSrc from './components/FilterChips.vue?raw'
+import HoldToConfirmSrc from './components/HoldToConfirm.vue?raw'
 
 export type CatalogEntry = {
   /** Registry slug, e.g. "magnetic-button". Also the page path segment. */
@@ -250,6 +256,40 @@ export const CATALOG: CatalogEntry[] = [
     source: MarqueeSrc,
     demoProps: { items: ['Spring', 'Stagger', 'Ripple', 'Tooltip', 'Magnetic', 'Tween', 'Blur'] },
     wide: true
+  },
+  {
+    slug: 'quantity-stepper',
+    name: 'QuantityStepper',
+    tagline: 'Spring-pop stepper',
+    description:
+      'A Vue quantity stepper: − and + buttons around a number that clamps to a minimum. Each change pops the value with a back-eased spring scale, the pressed button dips on press, and tabular-nums keeps the digits from shifting.',
+    keywords: ['vue quantity stepper', 'number input stepper', 'increment decrement buttons'],
+    component: QuantityStepper,
+    source: QuantityStepperSrc,
+    demoModel: 1,
+    demoProps: { min: 1, max: 99 }
+  },
+  {
+    slug: 'filter-chips',
+    name: 'FilterChips',
+    tagline: 'Toggle-fill filter chips',
+    description:
+      'A Vue filter chip row: clicking a chip fills it with the accent color, flips its text to the background color, and pops it with a back-eased spring. Multi-select — any number of chips can be active at once.',
+    keywords: ['vue filter chips', 'toggle chip group', 'multi select chips'],
+    component: FilterChips,
+    source: FilterChipsSrc,
+    demoModel: ['Vue'],
+    demoProps: { options: ['Vue', 'Motion', 'Tailwind', 'Verve', 'Blur'] }
+  },
+  {
+    slug: 'hold-to-confirm',
+    name: 'HoldToConfirm',
+    tagline: 'Hold-to-delete progress ring',
+    description:
+      'A circular hold-to-delete button ringed by an SVG progress arc. Press and hold and the ring fills over 800ms; hold the whole way to fire confirm and flash a green success state, or release early to cancel and snap the ring back. A safe destructive action for Vue.',
+    keywords: ['vue hold to confirm', 'hold to delete button', 'svg progress ring button'],
+    component: HoldToConfirm,
+    source: HoldToConfirmSrc
   }
 ]
 

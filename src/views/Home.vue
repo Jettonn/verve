@@ -22,7 +22,10 @@ import {
   TagInput,
   PinInput,
   RippleButton,
-  Marquee
+  Marquee,
+  QuantityStepper,
+  FilterChips,
+  HoldToConfirm
 } from '../components'
 
 import ForwardSrc from '../components/ForwardButton.vue?raw'
@@ -40,6 +43,9 @@ import TagInputSrc from '../components/TagInput.vue?raw'
 import PinInputSrc from '../components/PinInput.vue?raw'
 import RippleButtonSrc from '../components/RippleButton.vue?raw'
 import MarqueeSrc from '../components/Marquee.vue?raw'
+import QuantityStepperSrc from '../components/QuantityStepper.vue?raw'
+import FilterChipsSrc from '../components/FilterChips.vue?raw'
+import HoldToConfirmSrc from '../components/HoldToConfirm.vue?raw'
 
 useHead({
   title: 'Verve — Vue Motion & Micro-interaction Components',
@@ -90,6 +96,8 @@ const accordionItems = [
 const shakeRef = ref<InstanceType<typeof ErrorShake> | null>(null)
 const tags = ref(['Vue', 'Motion'])
 const pin = ref('')
+const qty = ref(1)
+const filters = ref(['Vue'])
 const marqueeChips = [
   'Spring',
   'Stagger',
@@ -278,6 +286,33 @@ const demoBtn =
 
         <ComponentCard name="Marquee" interaction="Looping hover-pause scroll" :source="MarqueeSrc">
           <Marquee :items="marqueeChips" class="w-full" />
+        </ComponentCard>
+
+        <ComponentCard
+          name="QuantityStepper"
+          interaction="Spring-pop stepper"
+          :source="QuantityStepperSrc"
+        >
+          <QuantityStepper v-model="qty" :min="1" :max="99" />
+        </ComponentCard>
+
+        <ComponentCard
+          name="FilterChips"
+          interaction="Toggle-fill filter chips"
+          :source="FilterChipsSrc"
+        >
+          <FilterChips
+            v-model="filters"
+            :options="['Vue', 'Motion', 'Tailwind', 'Verve', 'Blur']"
+          />
+        </ComponentCard>
+
+        <ComponentCard
+          name="HoldToConfirm"
+          interaction="Hold-to-delete progress ring"
+          :source="HoldToConfirmSrc"
+        >
+          <HoldToConfirm />
         </ComponentCard>
       </div>
     </section>
