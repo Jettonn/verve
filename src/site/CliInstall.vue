@@ -4,6 +4,9 @@
 // package managers, with a copy button. Purely informational — no network calls.
 import { computed, ref } from 'vue'
 import CopyButton from './CopyButton.vue'
+import { CATALOG } from '../catalog'
+
+const props = withDefaults(defineProps<{ initialSlug?: string }>(), { initialSlug: '' })
 
 const managers = [
   { id: 'npm', exec: 'npx' },
@@ -15,24 +18,14 @@ type Manager = (typeof managers)[number]['id']
 
 const ALL = '--all'
 
-// Mirrors the registry rows — "All" first, then originals, then the newer ones.
+// Driven off the catalog so the picker never drifts from the shipped components.
 const components = [
   { name: 'All components', slug: ALL },
-  { name: 'MagneticButton', slug: 'magnetic-button' },
-  { name: 'ThemeToggle', slug: 'theme-toggle' },
-  { name: 'AnimatedCounter', slug: 'animated-counter' },
-  { name: 'StaggeredList', slug: 'staggered-list' },
-  { name: 'ErrorShake', slug: 'error-shake' },
-  { name: 'ForwardButton', slug: 'forward-button' },
-  { name: 'VolumeButton', slug: 'volume-button' },
-  { name: 'SegmentedControl', slug: 'segmented-control' },
-  { name: 'SpringSwitch', slug: 'spring-switch' },
-  { name: 'Tooltip', slug: 'tooltip' },
-  { name: 'Accordion', slug: 'accordion' }
+  ...CATALOG.map((c) => ({ name: c.name, slug: c.slug }))
 ]
 
 const pm = ref<Manager>('npm')
-const slug = ref('forward-button')
+const slug = ref(props.initialSlug || 'forward-button')
 
 const exec = computed(() => managers.find((m) => m.id === pm.value)!.exec)
 const addCmd = computed(() => `${exec.value} @jettonn/verve@latest add ${slug.value}`)

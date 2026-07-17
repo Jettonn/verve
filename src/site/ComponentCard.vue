@@ -26,7 +26,11 @@ const slug = computed(() => props.name.replace(/([a-z0-9])([A-Z])/g, '$1-$2').to
     </div>
     <div class="flex items-center justify-between gap-3 border-t border-foreground/10 px-4 py-3">
       <div class="min-w-0">
-        <h3 class="truncate text-sm font-medium tracking-tight text-foreground">{{ name }}</h3>
+        <h3 class="truncate text-sm font-medium tracking-tight text-foreground">
+          <RouterLink :to="`/components/${slug}`" class="transition-colors hover:text-primary">
+            {{ name }}
+          </RouterLink>
+        </h3>
         <p class="truncate text-xs text-muted-foreground">{{ interaction }}</p>
       </div>
       <button
