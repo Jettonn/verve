@@ -102,7 +102,7 @@ const marqueeChips = [
 ]
 
 const demoBtn =
-  'interactive rounded-full border border-foreground/10 bg-foreground/[0.04] px-3 py-1.5 text-xs font-medium tracking-tight text-foreground hover:bg-foreground/[0.07]'
+  'interactive rounded-full border border-foreground/10 bg-foreground/4 px-3 py-1.5 text-xs font-medium tracking-tight text-foreground hover:bg-foreground/7'
 </script>
 
 <template>
@@ -128,7 +128,7 @@ const demoBtn =
         </a>
         <button
           @click="scrollToGrid"
-          class="interactive inline-flex h-9 items-center gap-2 rounded-full border border-foreground/10 bg-foreground/[0.04] px-5 text-[13px] font-medium tracking-tight text-foreground hover:bg-foreground/[0.07]"
+          class="interactive inline-flex h-9 items-center gap-2 rounded-full border border-foreground/10 bg-foreground/4 px-5 text-[13px] font-medium tracking-tight text-foreground hover:bg-foreground/7"
         >
           <LayoutGrid class="size-4" />
           Browse components
@@ -144,7 +144,7 @@ const demoBtn =
         <p class="mx-auto mt-3 max-w-lg text-pretty text-sm text-muted-foreground sm:text-base">
           One line drops the component's source into your
           <code
-            class="rounded bg-foreground/[0.06] px-1.5 py-0.5 font-mono text-[0.85em] text-foreground"
+            class="rounded bg-foreground/6 px-1.5 py-0.5 font-mono text-[0.85em] text-foreground"
             >src/components/ui</code
           >, pulls in the shared composable, and installs its deps.
         </p>
@@ -182,7 +182,7 @@ const demoBtn =
           <button
             @click="listKey++"
             aria-label="Replay"
-            class="interactive absolute right-3 top-3 flex size-8 items-center justify-center rounded-lg border border-foreground/10 bg-foreground/[0.03] text-muted-foreground hover:bg-foreground/[0.06] hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+            class="interactive absolute right-3 top-3 flex size-8 items-center justify-center rounded-lg border border-foreground/10 bg-foreground/3 text-muted-foreground hover:bg-foreground/6 hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
           >
             <RotateCcw class="size-4" />
           </button>
@@ -194,7 +194,7 @@ const demoBtn =
               <input
                 readonly
                 value="wrong password"
-                class="w-full rounded-lg border border-foreground/12 bg-foreground/[0.03] py-2 pl-3 pr-11 text-base sm:text-sm"
+                class="w-full rounded-lg border border-foreground/12 bg-foreground/3 py-2 pl-3 pr-11 text-base sm:text-sm"
               />
               <button
                 type="button"
@@ -242,7 +242,7 @@ const demoBtn =
         <ComponentCard name="Tooltip" interaction="Spring-scale tooltip" :source="TooltipSrc">
           <Tooltip content="Springy, isn't it?">
             <button
-              class="interactive inline-flex h-9 items-center rounded-full border border-foreground/10 bg-foreground/[0.04] px-6 text-[13px] font-medium tracking-tight text-foreground hover:bg-foreground/[0.07]"
+              class="interactive inline-flex h-9 items-center rounded-full border border-foreground/10 bg-foreground/4 px-6 text-[13px] font-medium tracking-tight text-foreground hover:bg-foreground/7"
             >
               Hover me
             </button>

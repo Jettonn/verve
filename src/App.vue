@@ -77,7 +77,7 @@ watch(
             target="_blank"
             rel="noreferrer"
             aria-label="GitHub repository"
-            class="interactive flex size-8 items-center justify-center rounded-lg border border-foreground/10 bg-foreground/[0.03] text-muted-foreground hover:text-foreground"
+            class="interactive flex size-8 items-center justify-center rounded-lg border border-foreground/10 bg-foreground/3 text-muted-foreground hover:text-foreground"
           >
             <Github class="size-4" />
           </a>

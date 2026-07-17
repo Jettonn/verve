@@ -32,7 +32,7 @@ withDefaults(
       <span
         v-for="(chip, i) in items"
         :key="`a-${i}`"
-        class="mr-3 shrink-0 rounded-full border border-foreground/10 bg-foreground/[0.04] px-3.5 py-1.5 text-[13px] font-medium tracking-tight text-foreground"
+        class="mr-3 shrink-0 rounded-full border border-foreground/10 bg-foreground/4 px-3.5 py-1.5 text-[13px] font-medium tracking-tight text-foreground"
       >
         {{ chip }}
       </span>
@@ -41,7 +41,7 @@ withDefaults(
         v-for="(chip, i) in items"
         :key="`b-${i}`"
         aria-hidden="true"
-        class="mr-3 shrink-0 rounded-full border border-foreground/10 bg-foreground/[0.04] px-3.5 py-1.5 text-[13px] font-medium tracking-tight text-foreground"
+        class="mr-3 shrink-0 rounded-full border border-foreground/10 bg-foreground/4 px-3.5 py-1.5 text-[13px] font-medium tracking-tight text-foreground"
       >
         {{ chip }}
       </span>

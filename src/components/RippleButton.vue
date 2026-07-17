@@ -46,7 +46,7 @@ onUnmounted(() => timers.forEach(clearTimeout))
   <button
     type="button"
     @pointerdown="spawn"
-    class="interactive relative isolate inline-flex h-9 items-center justify-center overflow-hidden rounded-full border border-foreground/10 bg-foreground/[0.04] px-6 text-[13px] font-medium tracking-tight text-foreground outline-none transition-colors hover:bg-foreground/[0.07] focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+    class="interactive relative isolate inline-flex h-9 items-center justify-center overflow-hidden rounded-full border border-foreground/10 bg-foreground/4 px-6 text-[13px] font-medium tracking-tight text-foreground outline-none transition-colors hover:bg-foreground/7 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
   >
     <span class="relative z-10"><slot>Click me</slot></span>
 

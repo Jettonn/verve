@@ -36,7 +36,7 @@ const slug = computed(() => props.name.replace(/([a-z0-9])([A-Z])/g, '$1-$2').to
       <button
         type="button"
         @click="open = true"
-        class="interactive inline-flex h-8 shrink-0 items-center gap-1.5 rounded-lg border border-foreground/10 bg-foreground/[0.03] px-2.5 text-xs font-medium text-muted-foreground hover:bg-foreground/[0.06] hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+        class="interactive inline-flex h-8 shrink-0 items-center gap-1.5 rounded-lg border border-foreground/10 bg-foreground/3 px-2.5 text-xs font-medium text-muted-foreground hover:bg-foreground/6 hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
       >
         <Code class="size-3.5" />
         Code

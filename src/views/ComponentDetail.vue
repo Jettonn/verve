@@ -129,7 +129,7 @@ useHead(
 
       <header class="mb-8">
         <span
-          class="inline-block rounded-full border border-foreground/10 bg-foreground/[0.04] px-2.5 py-1 text-[11px] font-medium tracking-tight text-muted-foreground"
+          class="inline-block rounded-full border border-foreground/10 bg-foreground/4 px-2.5 py-1 text-[11px] font-medium tracking-tight text-muted-foreground"
         >
           {{ entry.tagline }}
         </span>
@@ -157,7 +157,7 @@ useHead(
             v-if="entry.action"
             type="button"
             @click="runAction"
-            class="interactive absolute right-3 top-3 rounded-lg border border-foreground/10 bg-foreground/[0.03] px-2.5 py-1.5 text-xs font-medium text-muted-foreground hover:bg-foreground/[0.06] hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+            class="interactive absolute right-3 top-3 rounded-lg border border-foreground/10 bg-foreground/3 px-2.5 py-1.5 text-xs font-medium text-muted-foreground hover:bg-foreground/6 hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
           >
             {{ entry.action.label }}
           </button>
@@ -177,7 +177,7 @@ useHead(
           <CopyButton :code="entry.source" />
         </div>
         <pre
-          class="max-h-[28rem] overflow-auto rounded-xl border border-foreground/10 bg-foreground/[0.03] p-4 text-xs leading-relaxed"
+          class="max-h-[28rem] overflow-auto rounded-xl border border-foreground/10 bg-foreground/3 p-4 text-xs leading-relaxed"
         ><code>{{ entry.source }}</code></pre>
       </section>
 

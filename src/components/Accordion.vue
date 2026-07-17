@@ -71,7 +71,7 @@ watch(
       <button
         :id="`${uid}-header-${i}`"
         type="button"
-        class="flex w-full items-center justify-between gap-3 px-4 py-3 text-left text-sm font-medium tracking-tight text-foreground transition-colors hover:bg-foreground/[0.03] focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none focus-visible:ring-inset"
+        class="flex w-full items-center justify-between gap-3 px-4 py-3 text-left text-sm font-medium tracking-tight text-foreground transition-colors hover:bg-foreground/3 focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none focus-visible:ring-inset"
         :aria-expanded="isOpen(i)"
         :aria-controls="`${uid}-panel-${i}`"
         @click="toggle(i)"
@@ -83,7 +83,7 @@ watch(
           :class="[
             isOpen(i) ? 'rotate-180' : '',
             ready
-              ? 'transition-transform duration-[400ms] ease-[cubic-bezier(0.34,1.56,0.64,1)] motion-reduce:transition-none'
+              ? 'transition-transform duration-400 ease-[cubic-bezier(0.34,1.56,0.64,1)] motion-reduce:transition-none'
               : ''
           ]"
           aria-hidden="true"
@@ -96,9 +96,9 @@ watch(
         :aria-labelledby="`${uid}-header-${i}`"
         class="overflow-hidden"
         :class="[
-          isOpen(i) ? 'max-h-[var(--h)]' : 'max-h-0',
+          isOpen(i) ? 'max-h-(--h)' : 'max-h-0',
           ready
-            ? 'transition-[max-height] duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:transition-none'
+            ? 'transition-[max-height] duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] motion-reduce:transition-none'
             : ''
         ]"
         :style="{ '--h': `${heights[i] ?? 0}px` }"

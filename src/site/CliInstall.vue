@@ -45,7 +45,7 @@ const addCmd = computed(() => `${exec.value} @jettonn/verve@latest add ${slug.va
             'rounded-full px-3 py-1 text-xs font-medium tracking-tight transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none',
             pm === m.id
               ? 'bg-foreground text-background'
-              : 'border border-foreground/10 bg-foreground/[0.03] text-muted-foreground hover:text-foreground'
+              : 'border border-foreground/10 bg-foreground/3 text-muted-foreground hover:text-foreground'
           ]"
         >
           {{ m.id }}
@@ -55,7 +55,7 @@ const addCmd = computed(() => `${exec.value} @jettonn/verve@latest add ${slug.va
         Component
         <select
           v-model="slug"
-          class="rounded-lg border border-foreground/10 bg-foreground/[0.03] px-2.5 py-1.5 text-xs font-medium text-foreground outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          class="rounded-lg border border-foreground/10 bg-foreground/3 px-2.5 py-1.5 text-xs font-medium text-foreground outline-none focus-visible:ring-2 focus-visible:ring-ring"
         >
           <option v-for="c in components" :key="c.slug" :value="c.slug">{{ c.name }}</option>
         </select>
@@ -64,7 +64,7 @@ const addCmd = computed(() => `${exec.value} @jettonn/verve@latest add ${slug.va
 
     <!-- The command -->
     <div
-      class="flex items-start gap-3 rounded-xl border border-foreground/10 bg-foreground/[0.03] px-4 py-3"
+      class="flex items-start gap-3 rounded-xl border border-foreground/10 bg-foreground/3 px-4 py-3"
     >
       <code class="min-w-0 flex-1 break-all font-mono text-sm leading-relaxed text-foreground">
         <span class="select-none text-primary">$ </span>{{ addCmd }}
@@ -75,7 +75,7 @@ const addCmd = computed(() => `${exec.value} @jettonn/verve@latest add ${slug.va
     <!-- What it does -->
     <p class="mt-3 text-center text-xs text-muted-foreground">
       Copies the source into
-      <code class="rounded bg-foreground/[0.06] px-1.5 py-0.5 font-mono text-[11px] text-foreground"
+      <code class="rounded bg-foreground/6 px-1.5 py-0.5 font-mono text-[11px] text-foreground"
         >src/components/ui/</code
       >
       and installs its deps — no config, no runtime package.

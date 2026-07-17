@@ -108,7 +108,7 @@ const transition = computed(() =>
         @keydown.delete="onBackspace(i)"
         @focus="($event.target as HTMLInputElement).select()"
         :class="[
-          'size-12 rounded-lg border bg-foreground/[0.03] text-center text-lg font-semibold text-foreground caret-primary outline-none transition-colors focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background',
+          'size-12 rounded-lg border bg-foreground/3 text-center text-lg font-semibold text-foreground caret-primary outline-none transition-colors focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background',
           digits[i] ? 'border-primary' : 'border-foreground/12'
         ]"
       />

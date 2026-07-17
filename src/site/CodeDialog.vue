@@ -105,7 +105,7 @@ onUnmounted(teardown)
               type="button"
               @click="close"
               aria-label="Close"
-              class="interactive flex size-8 shrink-0 items-center justify-center rounded-lg border border-foreground/10 bg-foreground/[0.03] text-muted-foreground hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+              class="interactive flex size-8 shrink-0 items-center justify-center rounded-lg border border-foreground/10 bg-foreground/3 text-muted-foreground hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
             >
               <X class="size-4" />
             </button>
@@ -121,7 +121,7 @@ onUnmounted(teardown)
                 Add with the CLI
               </p>
               <div
-                class="flex items-center gap-3 rounded-xl border border-foreground/10 bg-foreground/[0.03] px-4 py-2.5"
+                class="flex items-center gap-3 rounded-xl border border-foreground/10 bg-foreground/3 px-4 py-2.5"
               >
                 <code class="min-w-0 flex-1 break-all font-mono text-sm text-foreground">
                   <span class="select-none text-primary">$ </span>{{ command }}
@@ -138,7 +138,7 @@ onUnmounted(teardown)
                 {{ name }}.vue
               </p>
               <div
-                class="relative min-h-0 flex-1 overflow-hidden rounded-xl border border-foreground/10 bg-foreground/[0.02]"
+                class="relative min-h-0 flex-1 overflow-hidden rounded-xl border border-foreground/10 bg-foreground/2"
               >
                 <div class="absolute right-4 top-2.5 z-10 rounded-lg bg-card">
                   <CopyButton :code="source" />

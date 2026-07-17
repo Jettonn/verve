@@ -45,7 +45,7 @@ const whilePress = computed(() => (reduced.value ? undefined : { scale: 0.96 }))
     :while-press="whilePress"
     @mouseenter="hovered = true"
     @mouseleave="hovered = false"
-    class="relative flex h-9 items-center justify-center rounded-full border border-foreground/10 bg-foreground/[0.04] px-6 text-[13px] font-medium tracking-tight text-foreground transition-colors duration-150 hover:bg-foreground/[0.07] focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+    class="relative flex h-9 items-center justify-center rounded-full border border-foreground/10 bg-foreground/4 px-6 text-[13px] font-medium tracking-tight text-foreground transition-colors duration-150 hover:bg-foreground/7 focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
   >
     <AnimatePresence mode="popLayout">
       <motion.div
