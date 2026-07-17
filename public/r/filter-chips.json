@@ -1,0 +1,16 @@
+{
+  "$schema": "https://shadcn-vue.com/schema/registry-item.json",
+  "name": "filter-chips",
+  "type": "registry:ui",
+  "title": "FilterChips",
+  "description": "A row of toggle chips. Clicking one fills it with the accent color, flips its text to the background color, and pops it with a back-eased spring. Multi-select — any number can be on at once.",
+  "dependencies": ["motion-v@^2.3.0"],
+  "registryDependencies": ["https://verve.jettonn.dev/r/use-reduced-motion.json"],
+  "files": [
+    {
+      "path": "ui/FilterChips.vue",
+      "content": "<script setup lang=\"ts\">\n// Verve · FilterChips\n// A row of toggle chips. Clicking one flips its .on state — the chip fills with\n// the accent color and its text flips to the dark background color — and gives\n// it a brief back-eased pop (scale 1.12, the overshoot doing the pop). Many\n// chips can be on at once; the value is the array of selected options. Reduced\n// motion drops the pop.\nimport { computed, ref, watch } from 'vue'\nimport { motion } from 'motion-v'\nimport { useReducedMotion } from '@/lib/useReducedMotion'\n\nconst props = withDefaults(\n  defineProps<{\n    /** Selectable labels. */\n    options: string[]\n    /** The selected labels (v-model). */\n    modelValue?: string[]\n  }>(),\n  { modelValue: () => [] }\n)\nconst emit = defineEmits<{ 'update:modelValue': [string[]] }>()\n\nconst reduced = useReducedMotion()\n\nconst selected = ref<string[]>([...props.modelValue])\nwatch(\n  () => props.modelValue,\n  (v) => (selected.value = [...v])\n)\n\nconst isOn = (opt: string) => selected.value.includes(opt)\n\n// One pop per chip: scale to 1.12, then settle home after a beat. Both legs ride\n// the back-eased curve whose overshoot reads as the pop.\nconst scales = ref<Record<string, number>>({})\nconst timers: Record<string, ReturnType<typeof setTimeout>> = {}\nfunction pop(opt: string) {\n  if (reduced.value) return\n  scales.value[opt] = 1.12\n  clearTimeout(timers[opt])\n  timers[opt] = setTimeout(() => (scales.value[opt] = 1), 150)\n}\n\nfunction toggle(opt: string) {\n  selected.value = isOn(opt) ? selected.value.filter((o) => o !== opt) : [...selected.value, opt]\n  emit('update:modelValue', selected.value)\n  pop(opt)\n}\n\nconst transition = computed(() =>\n  reduced.value ? { duration: 0 } : { duration: 0.28, ease: [0.34, 1.56, 0.64, 1] as const }\n)\n</script>\n\n<template>\n  <div role=\"group\" class=\"flex flex-wrap items-center gap-2\">\n    <motion.button\n      v-for=\"opt in options\"\n      :key=\"opt\"\n      type=\"button\"\n      :aria-pressed=\"isOn(opt)\"\n      :animate=\"{ scale: scales[opt] ?? 1 }\"\n      :transition=\"transition\"\n      @click=\"toggle(opt)\"\n      :class=\"[\n        'inline-flex h-8 items-center rounded-full border px-3.5 text-[13px] font-medium tracking-tight transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none',\n        isOn(opt)\n          ? 'border-primary bg-primary text-primary-foreground'\n          : 'border-foreground/12 bg-foreground/4 text-foreground hover:bg-foreground/7'\n      ]\"\n    >\n      {{ opt }}\n    </motion.button>\n  </div>\n</template>\n",
+      "type": "registry:ui"
+    }
+  ]
+}

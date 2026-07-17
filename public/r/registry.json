@@ -114,6 +114,27 @@
       "title": "Marquee",
       "description": "An infinite horizontal chip loop that pauses on hover, with edge mask fades. The list is duplicated and slid translateX 0 to -50% for a seamless loop. Pure CSS.",
       "url": "https://verve.jettonn.dev/r/marquee.json"
+    },
+    {
+      "name": "quantity-stepper",
+      "type": "registry:ui",
+      "title": "QuantityStepper",
+      "description": "− and + buttons around a number that clamps to a minimum. Each change pops the value with a back-eased spring scale, the pressed button dips on :active, and tabular-nums keeps the digits from shifting.",
+      "url": "https://verve.jettonn.dev/r/quantity-stepper.json"
+    },
+    {
+      "name": "filter-chips",
+      "type": "registry:ui",
+      "title": "FilterChips",
+      "description": "A row of toggle chips. Clicking one fills it with the accent color, flips its text to the background color, and pops it with a back-eased spring. Multi-select — any number can be on at once.",
+      "url": "https://verve.jettonn.dev/r/filter-chips.json"
+    },
+    {
+      "name": "hold-to-confirm",
+      "type": "registry:ui",
+      "title": "HoldToConfirm",
+      "description": "A circular hold-to-delete button ringed by an SVG progress arc. Hold and the ring's stroke-dashoffset fills over 800ms linear; hold the whole way to fire confirm and flash a green success state, or release early to cancel and snap the ring back.",
+      "url": "https://verve.jettonn.dev/r/hold-to-confirm.json"
     }
   ]
 }
