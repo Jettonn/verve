@@ -29,7 +29,7 @@ const iconSwap = computed(() =>
     type="button"
     @click="copy"
     :aria-label="copied ? 'Copied' : 'Copy source'"
-    class="interactive relative flex size-8 shrink-0 items-center justify-center rounded-lg border border-foreground/10 bg-foreground/[0.03] text-muted-foreground hover:bg-foreground/[0.06] hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+    class="interactive relative flex size-8 shrink-0 items-center justify-center rounded-lg border border-foreground/10 bg-foreground/3 text-muted-foreground hover:bg-foreground/6 hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
   >
     <AnimatePresence mode="popLayout" :initial="false">
       <motion.span

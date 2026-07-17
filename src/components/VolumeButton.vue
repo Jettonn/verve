@@ -47,7 +47,7 @@ const whilePress = computed(() => (reduced.value ? undefined : { scale: 0.96 }))
     :while-hover="whileHover"
     :while-press="whilePress"
     @click="toggle"
-    class="relative flex h-9 items-center justify-center rounded-full border border-foreground/10 bg-foreground/[0.04] px-6 text-[13px] font-medium tracking-tight text-foreground transition-colors hover:bg-foreground/[0.07] focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
+    class="relative flex h-9 items-center justify-center rounded-full border border-foreground/10 bg-foreground/4 px-6 text-[13px] font-medium tracking-tight text-foreground transition-colors hover:bg-foreground/7 focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"
   >
     <span class="relative flex size-4 shrink-0 items-center justify-center">
       <AnimatePresence mode="popLayout" :initial="false">

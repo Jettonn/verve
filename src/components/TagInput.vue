@@ -84,7 +84,7 @@ const exit = computed(() =>
        lifts on focus-within. -->
   <div
     @click="inputEl?.focus()"
-    class="flex w-full max-w-xs cursor-text flex-wrap items-center gap-1.5 rounded-lg border border-foreground/12 bg-foreground/[0.03] px-2 py-2 transition-colors focus-within:border-primary/40 focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 focus-within:ring-offset-background"
+    class="flex w-full max-w-xs cursor-text flex-wrap items-center gap-1.5 rounded-lg border border-foreground/12 bg-foreground/3 px-2 py-2 transition-colors focus-within:border-primary/40 focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 focus-within:ring-offset-background"
   >
     <AnimatePresence>
       <motion.span

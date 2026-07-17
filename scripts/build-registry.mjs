@@ -91,3 +91,38 @@ writeFileSync(
 
 const written = readdirSync(OUT_DIR).length
 console.log(`✓ Verve registry: ${index.length} items -> public/r/ (${written} files) @ ${BASE_URL}`)
+
+// --- Sitemap ---------------------------------------------------------------
+// Kept in lockstep with the registry: the home page plus one URL per UI
+// component page (/components/<slug>), so a new component is indexed the
+// moment it lands in registry.json.
+const today = new Date().toISOString().slice(0, 10)
+const componentSlugs = registry.items.filter((i) => i.type === 'registry:ui').map((i) => i.name)
+
+const urls = [
+  { loc: `${ORIGIN}/`, changefreq: 'weekly', priority: '1.0' },
+  ...componentSlugs.map((slug) => ({
+    loc: `${ORIGIN}/components/${slug}`,
+    changefreq: 'monthly',
+    priority: '0.8'
+  }))
+]
+
+const sitemap =
+  `<?xml version="1.0" encoding="UTF-8"?>\n` +
+  `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
+  urls
+    .map(
+      (u) =>
+        `  <url>\n` +
+        `    <loc>${u.loc}</loc>\n` +
+        `    <lastmod>${today}</lastmod>\n` +
+        `    <changefreq>${u.changefreq}</changefreq>\n` +
+        `    <priority>${u.priority}</priority>\n` +
+        `  </url>`
+    )
+    .join('\n') +
+  `\n</urlset>\n`
+
+writeFileSync(join(ROOT, 'public', 'sitemap.xml'), sitemap)
+console.log(`✓ Verve sitemap: ${urls.length} URLs -> public/sitemap.xml`)

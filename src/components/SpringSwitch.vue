@@ -49,7 +49,7 @@ const transition = computed(() =>
     @click="toggle"
     :class="[
       'relative inline-flex h-7 w-12 items-center justify-start rounded-full border border-foreground/10 p-1 outline-none transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background',
-      on ? 'bg-primary' : 'bg-foreground/[0.10]'
+      on ? 'bg-primary' : 'bg-foreground/10'
     ]"
   >
     <!-- The thumb springs 18px across the track; low damping gives the overshoot. -->
