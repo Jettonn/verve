@@ -20,7 +20,7 @@ const slug = computed(() => props.name.replace(/([a-z0-9])([A-Z])/g, '$1-$2').to
     class="group flex flex-col rounded-2xl border border-foreground/10 bg-card/60 transition-colors duration-200 hover:border-foreground/20"
   >
     <div
-      class="dot-grid relative flex min-h-[180px] flex-1 items-center justify-center rounded-t-2xl p-8"
+      class="dot-grid relative flex min-h-45 flex-1 items-center justify-center rounded-t-2xl p-8"
     >
       <slot />
     </div>
