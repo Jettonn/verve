@@ -25,7 +25,8 @@ import {
   Marquee,
   QuantityStepper,
   FilterChips,
-  HoldToConfirm
+  HoldToConfirm,
+  FocusBlur
 } from '../components'
 
 import ForwardSrc from '../components/ForwardButton.vue?raw'
@@ -46,6 +47,7 @@ import MarqueeSrc from '../components/Marquee.vue?raw'
 import QuantityStepperSrc from '../components/QuantityStepper.vue?raw'
 import FilterChipsSrc from '../components/FilterChips.vue?raw'
 import HoldToConfirmSrc from '../components/HoldToConfirm.vue?raw'
+import FocusBlurSrc from '../components/FocusBlur.vue?raw'
 
 useHead({
   title: 'Verve — Vue Motion & Micro-interaction Components',
@@ -313,6 +315,10 @@ const demoBtn =
           :source="HoldToConfirmSrc"
         >
           <HoldToConfirm />
+        </ComponentCard>
+
+        <ComponentCard name="FocusBlur" interaction="Focus-pull hover blur" :source="FocusBlurSrc">
+          <FocusBlur />
         </ComponentCard>
       </div>
     </section>
