@@ -135,6 +135,13 @@
       "title": "HoldToConfirm",
       "description": "A circular hold-to-delete button ringed by an SVG progress arc. Hold and the ring's stroke-dashoffset fills over 800ms linear; hold the whole way to fire confirm and flash a green success state, or release early to cancel and snap the ring back.",
       "url": "https://verve.jettonn.dev/r/hold-to-confirm.json"
+    },
+    {
+      "name": "focus-blur",
+      "type": "registry:ui",
+      "title": "FocusBlur",
+      "description": "A link row that pulls focus on hover: the link under the cursor lifts to the accent color while the rest blur and dim, with an optional dashed bracket that springs in around it. Keyboard focus drives the same state; reduced motion keeps the dim but drops the blur.",
+      "url": "https://verve.jettonn.dev/r/focus-blur.json"
     }
   ]
 }

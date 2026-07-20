@@ -21,6 +21,7 @@ import Marquee from './components/Marquee.vue'
 import QuantityStepper from './components/QuantityStepper.vue'
 import FilterChips from './components/FilterChips.vue'
 import HoldToConfirm from './components/HoldToConfirm.vue'
+import FocusBlur from './components/FocusBlur.vue'
 
 import MagneticSrc from './components/MagneticButton.vue?raw'
 import ThemeToggleSrc from './components/ThemeToggle.vue?raw'
@@ -40,6 +41,7 @@ import MarqueeSrc from './components/Marquee.vue?raw'
 import QuantityStepperSrc from './components/QuantityStepper.vue?raw'
 import FilterChipsSrc from './components/FilterChips.vue?raw'
 import HoldToConfirmSrc from './components/HoldToConfirm.vue?raw'
+import FocusBlurSrc from './components/FocusBlur.vue?raw'
 
 export type CatalogEntry = {
   /** Registry slug, e.g. "magnetic-button". Also the page path segment. */
@@ -290,6 +292,24 @@ export const CATALOG: CatalogEntry[] = [
     keywords: ['vue hold to confirm', 'hold to delete button', 'svg progress ring button'],
     component: HoldToConfirm,
     source: HoldToConfirmSrc
+  },
+  {
+    slug: 'focus-blur',
+    name: 'FocusBlur',
+    tagline: 'Focus-pull hover blur',
+    description:
+      'A Vue link row that pulls focus on hover: the link under the cursor lifts to the accent color while the rest blur and dim out of the way, with an optional dashed bracket that springs in around the focused link. Keyboard focus drives the same state, and reduced motion keeps the dim but drops the blur.',
+    keywords: ['vue focus blur', 'hover blur links', 'defocus siblings hover'],
+    component: FocusBlur,
+    source: FocusBlurSrc,
+    demoProps: {
+      items: [
+        { label: '@Twitter', href: '#' },
+        { label: '@Threads', href: '#' },
+        { label: '@Instagram', href: '#' },
+        { label: '@GitHub', href: '#' }
+      ]
+    }
   }
 ]
 

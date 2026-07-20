@@ -168,6 +168,15 @@
       "dependencies": ["motion-v@^2.3.0", "lucide-vue-next"],
       "registryDependencies": ["use-reduced-motion"],
       "files": [{ "path": "src/components/HoldToConfirm.vue", "type": "registry:ui" }]
+    },
+    {
+      "name": "focus-blur",
+      "type": "registry:ui",
+      "title": "FocusBlur",
+      "description": "A link row that pulls focus on hover: the link under the cursor lifts to the accent color while the rest blur and dim, with an optional dashed bracket that springs in around it. Keyboard focus drives the same state; reduced motion keeps the dim but drops the blur.",
+      "dependencies": ["motion-v@^2.3.0"],
+      "registryDependencies": ["use-reduced-motion"],
+      "files": [{ "path": "src/components/FocusBlur.vue", "type": "registry:ui" }]
     }
   ]
 }
